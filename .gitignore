@@ -131,7 +131,6 @@ dmypy.json
 .idea
 .idea/
 
-../.idea
 node_modules
 venv
 venv1
