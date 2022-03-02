@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'users',
+    'notesproject',
 ]
 
 CORS_ALLOWED_ORIGINS = [
