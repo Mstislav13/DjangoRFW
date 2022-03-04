@@ -20,9 +20,9 @@ from users.views import AppUsersViewSet
 from notesproject.views import ProjectViewSet, TodoViewSet
 
 router = DefaultRouter()
-router.register('users', AppUsersViewSet)
-router.register('projects', ProjectViewSet)
-router.register('todo', TodoViewSet)
+router.register('users', AppUsersViewSet, basename='users')
+router.register('projects', ProjectViewSet, basename='projects')
+router.register('todo', TodoViewSet, basename='todo')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

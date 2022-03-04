@@ -20,7 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6n&5s7_iu-ob-u5f-h&_#&9ae7=5#(k1p8&k2ne#0wyzwxx+0&'
+SECRET_KEY = 'django-insecure-6n&5s7_iu-ob-u5f-h&_#&9ae7=5#' \
+             '(k1p8&k2ne#0wyzwxx+0&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'corsheaders',
+    'django_filters',
+
     'users',
     'notesproject',
 ]
@@ -58,6 +62,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination'
+                                '.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
+}
 
 ROOT_URLCONF = 'todonotes.urls'
 

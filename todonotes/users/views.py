@@ -1,9 +1,12 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, \
+    UpdateModelMixin
 from .serializers import AppUsersModelSerializer
 from .models import AppUsers
 
 
-class AppUsersViewSet(ModelViewSet):
+class AppUsersViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin,
+                      UpdateModelMixin):
     """
     класс - представлений
     """

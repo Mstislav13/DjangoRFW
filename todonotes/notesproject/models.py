@@ -33,6 +33,7 @@ class Todo(models.Model):
     user = models.ForeignKey(AppUsers, on_delete=models.CASCADE,
                              verbose_name='Создатель')
     status = models.BooleanField(default=True, verbose_name='Статус')
+    closed = models.BooleanField(default=False, verbose_name='Закрыт')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата '
                                                                    'создания')
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата '

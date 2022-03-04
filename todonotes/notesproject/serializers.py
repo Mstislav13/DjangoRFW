@@ -7,7 +7,7 @@ class ProjectSerializer(ModelSerializer):
     """
     класс - ProjectSerializer
     """
-    users = AppUsersModelSerializer(many=True)
+    # users = AppUsersModelSerializer(many=True)
 
     class Meta:
         """
@@ -28,4 +28,16 @@ class TodoSerializer(ModelSerializer):
         """
         model = Todo
         fields = ['id', 'title', 'desc', 'project', 'user', 'status',
-                  'created', 'updated']
+                  'closed', 'created', 'updated']
+
+
+class HiddenSerializer(ModelSerializer):
+    """
+    класс - HiddenSerializer
+    """
+    class Meta:
+        """
+        класс - Meta
+        """
+        model = Todo
+        fields = []
