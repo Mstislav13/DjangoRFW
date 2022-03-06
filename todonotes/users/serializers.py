@@ -13,4 +13,3 @@ class AppUsersModelSerializer(ModelSerializer):
         """
         model = AppUsers
         fields = ['id', 'username', 'first_name', 'last_name', 'email']
-        # fields = '__all__'
