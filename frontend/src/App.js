@@ -75,8 +75,9 @@ class App extends React.Component {
 
                             <Route exact path='/projects' element={<ProjectList projects={this.state.projects} />} />
 
-                            <Route path='/user/:id' element={<TodoList
-                            todos={this.state.todos} />} />
+                            <Route path='/user/:id' element={<TodoList todos={this.state.todos} />} />
+
+                            <Route path='/project/:id' element={<TodoList todos={this.state.todos} />} />
 
                             <Route path="*" element = {<NotFound />} />
                         </Routes>

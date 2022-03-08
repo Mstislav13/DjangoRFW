@@ -7,11 +7,15 @@ const Menu = ({menu}) => {
             <ul>
 
                 <li class="link_menu">
-                    <Link to="/">Пользователи</Link>
+                    <Link to="/">
+                        Пользователи
+                    </Link>
                 </li>
 
                 <li class="link_menu">
-                    <Link to="/projects">Проекты</Link>
+                    <Link to="/projects">
+                        Проекты
+                    </Link>
                 </li>
 
             </ul>

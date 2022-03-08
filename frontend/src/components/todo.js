@@ -37,7 +37,7 @@ const TodoList = ({todos}) => {
                 </tr>
             </thead>
 
-            {filtered_todos.map( (current_todo) => <TodoItem
+            {filtered_todos.map((current_todo) => <TodoItem
             todo={current_todo} />)}
 
         </table>
