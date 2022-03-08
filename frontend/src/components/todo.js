@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams, Link} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 const TodoItem = ({todo}) => {
     let closed;
@@ -26,16 +26,14 @@ const TodoList = ({todos}) => {
 
     return (
         <table>
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Название</th>
-                    <th>Описание</th>
-                    <th>Проект</th>
-                    <th>Пользователь</th>
-                    <th>Закрыт</th>
-                </tr>
-            </thead>
+            <tr>
+                <th>id</th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Проект</th>
+                <th>Пользователь</th>
+                <th>Закрыт</th>
+            </tr>
 
             {filtered_todos.map((current_todo) => <TodoItem
             todo={current_todo} />)}

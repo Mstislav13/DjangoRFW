@@ -18,6 +18,12 @@ const Menu = ({menu}) => {
                     </Link>
                 </li>
 
+                <li class="link_menu">
+                    <Link to="/todos">
+                        Заметки
+                    </Link>
+                </li>
+
             </ul>
         </nav>
     )
