@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import DjangoModelPermissions
 from notesproject.models import Project, Todo
 from notesproject.serializers import ProjectSerializer, TodoSerializer
 
@@ -24,6 +25,7 @@ class ProjectViewSet(ModelViewSet):
     """
     класс - представлений
     """
+    permission_classes = [DjangoModelPermissions]
     serializer_class = ProjectSerializer
     pagination_class = ProjectLimitOffsetPagination
     fields_filter = ['title']
@@ -42,6 +44,7 @@ class TodoViewSet(ModelViewSet):
     """
     класс - представлений
     """
+    permission_classes = [DjangoModelPermissions]
     serializer_class = TodoSerializer
     pagination_class = TodoLimitOffsetPagination
     fields_filter = ['project']

@@ -2,7 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
-import {BrowserRouter, Route, Routes, Link, useLocation} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Link, useLocation} from
+"react-router-dom";
 import UserList from "./components/users_list";
 import Menu from "./components/menu";
 import Footer from "./components/footer";
@@ -71,15 +72,14 @@ class App extends React.Component {
 
                     <content>
                         <Routes>
-                            <Route exact path='/' element={<UserList users={this.state.users} />} />
+                            <Route exact path='/' element={<UserList
+                            users={this.state.users} />} />
 
-                            <Route exact path='/projects' element={<ProjectList projects={this.state.projects} />} />
+                            <Route exact path='/projects' element={<ProjectList
+                             projects={this.state.projects} />} />
 
-                            <Route path='/user/:id' element={<TodoList todos={this.state.todos} />} />
-
-                            <Route path='/project/:id' element={<TodoList todos={this.state.todos} />} />
-
-                            <Route exact path='/todos' element={<TodoList todos={this.state.todos} />} />
+                            <Route exact path='/todos' element={<TodoList
+                            todos={this.state.todos} />} />
 
                             <Route path="*" element = {<NotFound />} />
                         </Routes>
