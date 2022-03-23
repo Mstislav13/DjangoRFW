@@ -9,10 +9,10 @@ import Menu from "./components/menu";
 import Footer from "./components/footer";
 import ProjectList from "./components/projects";
 import TodoList from "./components/todo";
+import LoginForm from "./components/login_form";
 
 
-const NotFound = () => {
-    let location = useLocation()
+const NotFound = ({location}) => {
     return (
         <div>
             <div>Page: {location.pathname} not found </div>
@@ -28,37 +28,91 @@ class App extends React.Component {
             'users': [],
             'projects': [],
             'todos': [],
-            'menu': []
+            'menu': [],
+            'token': '',
+            'username': ''
         }
     }
 
-    componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/users/')
+    loginToken(username, password) {
+        localStorage.setItem('username', username)
+        axios.post('http://127.0.0.1:8000/api-token-auth/',
+            {"username": username, "password": password})
+            .then(response  => {
+                localStorage.setItem('token', response.data.token)
+                let token = localStorage.getItem('token')
+                let username = localStorage.getItem('username')
+                this.setState({'token': token, 'username': username},
+                    this.loadData)
+            })
+            .catch(error => alert("Неверные логин и/или пароль"))
+    }
+
+    logout() {
+        localStorage.setItem('token', '')
+        localStorage.setItem('username', '')
+        this.setState({'token': '', 'username': ''}, this.loadData)
+    }
+
+    isAuthenticated() {
+        return !!this.state.token
+    }
+
+    getHeaders() {
+        if (this.isAuthenticated()) {
+            return {'Authorization': 'Token ' + this.state.token}
+        }
+        return {}
+    }
+
+    loadData() {
+        const headers = this.getHeaders()
+
+        axios.get('http://127.0.0.1:8000/api/users/', {headers})
             .then(response => {
                 const users = response.data.results
                 this.setState({
                     'users': users
                 })
             })
-            .catch(error => console.log(error))
-
-        axios.get('http://127.0.0.1:8000/api/projects/')
+            .catch(error => {
+                console.log(error)
+                this.setState({
+                    'users': []
+                })
+            })
+        axios.get('http://127.0.0.1:8000/api/projects/', {headers})
             .then(response => {
                 const projects = response.data.results
                 this.setState({
                     'projects': projects
                 })
             })
-            .catch(error => console.log(error))
-
-        axios.get('http://127.0.0.1:8000/api/todo/')
+            .catch(error => {
+                console.log(error)
+                this.setState({
+                    'projects': []
+                })
+            })
+        axios.get('http://127.0.0.1:8000/api/todo/', {headers})
             .then(response => {
                 const todos = response.data.results
                 this.setState({
                     'todos': todos
                 })
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                this.setState({
+                    'todos': []
+                })
+            })
+    }
+
+    componentDidMount() {
+        const token = localStorage.getItem('token')
+        const username = localStorage.getItem('username')
+        this.setState({'token': token, 'username': username}, this.loadData)
     }
 
     render() {
@@ -67,7 +121,15 @@ class App extends React.Component {
                 <BrowserRouter>
 
                     <nav>
-                        <Menu menu={this.state.menu}/>
+                        <Menu menu={this.state.menu} />
+                        { this.isAuthenticated() ?
+                            <span>{this.state.username}
+                                <button onClick={() => this.logout()}>
+                                    Выйти
+                                </button>
+                            </span> :
+                            <Link className="nav-link" to="/login">Войти</Link>
+                        }
                     </nav>
 
                     <content>
@@ -80,6 +142,12 @@ class App extends React.Component {
 
                             <Route exact path='/todos' element={<TodoList
                             todos={this.state.todos} />} />
+
+
+                            <Route exact path='/login' element={<LoginForm
+                            loginToken={(username, password) => this
+                            .loginToken(username, password)}/>}/>
+
 
                             <Route path="*" element = {<NotFound />} />
                         </Routes>

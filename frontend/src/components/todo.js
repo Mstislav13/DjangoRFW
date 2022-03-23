@@ -22,7 +22,6 @@ const TodoItem = ({todo}) => {
 
 const TodoList = ({todos}) => {
 
-
     return (
         <table>
             <tr>
