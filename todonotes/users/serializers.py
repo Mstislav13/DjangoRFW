@@ -13,3 +13,15 @@ class AppUsersModelSerializer(ModelSerializer):
         """
         model = AppUsers
         fields = ['id', 'username', 'first_name', 'last_name', 'email']
+
+
+class AppUsersModelSerializerV2(ModelSerializer):
+    """
+    класс - сериализатор_2
+    """
+    class Meta:
+        """
+        класс - модель сериализатора_2
+        """
+        model = AppUsers
+        fields = ['id', 'username', 'first_name', 'last_name']
