@@ -1,7 +1,7 @@
 import React from 'react';
 import {useParams, Link} from "react-router-dom";
 
-const TodoItem = ({todo}) => {
+const TodoItem = ({todo, deleteTodo}) => {
     let closed;
     if (todo.closed) {
         closed = 'Закрыто';
@@ -16,11 +16,16 @@ const TodoItem = ({todo}) => {
             <td>{todo.project}</td>
             <td>{todo.user}</td>
             <td>{closed}</td>
+            <td><button type='button'
+                onClick={() => deleteTodo(todo.id)}>
+                Delete
+                </button>
+            </td>
         </tr>
     )
 }
 
-const TodoList = ({todos}) => {
+const TodoList = ({todos, deleteTodo}) => {
 
     return (
         <table>
@@ -31,10 +36,11 @@ const TodoList = ({todos}) => {
                 <th>Проект</th>
                 <th>Пользователь</th>
                 <th>Закрыт</th>
+                <th>&nbsp;</th>
             </tr>
 
             {todos.map((current_todo) => <TodoItem
-            todo={current_todo} />)}
+            todo={current_todo} deleteTodo={deleteTodo} />)}
 
         </table>
     )

@@ -11,7 +11,7 @@ class AppUsersViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin,
     """
     класс - представлений
     """
-    permission_classes = [DjangoModelPermissions]
+    # permission_classes = [DjangoModelPermissions]
     # serializer_class = AppUsersModelSerializer
     queryset = AppUsers.objects.all()
 

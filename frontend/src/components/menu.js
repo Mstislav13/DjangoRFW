@@ -24,6 +24,18 @@ const Menu = ({menu}) => {
                     </Link>
                 </li>
 
+                <li class="link_menu">
+                    <Link to="/projects/create">
+                        Создать новый проект
+                    </Link>
+                </li>
+
+                <li class="link_menu">
+                    <Link to="/todos/create">
+                        Создать новую заметку
+                    </Link>
+                </li>
+
             </ul>
         </nav>
     )

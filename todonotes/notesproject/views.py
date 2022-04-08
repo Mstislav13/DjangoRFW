@@ -5,30 +5,32 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import DjangoModelPermissions
 from notesproject.models import Project, Todo
 from notesproject.serializers import ProjectSerializer, TodoSerializer
+from notesproject.filters import ProjectFilter
 
 
-class ProjectLimitOffsetPagination(LimitOffsetPagination):
-    """
-    класс - для постраничного вывода размер страницы 10 записей
-    """
-    default_limit = 10
+# class ProjectLimitOffsetPagination(LimitOffsetPagination):
+#     """
+#     класс - для постраничного вывода размер страницы 10 записей
+#     """
+#     default_limit = 10
 
 
-class TodoLimitOffsetPagination(LimitOffsetPagination):
-    """
-    класс - для постраничного вывода размер страницы 20
-    """
-    default_limit = 20
+# class TodoLimitOffsetPagination(LimitOffsetPagination):
+#     """
+#     класс - для постраничного вывода размер страницы 20
+#     """
+#     default_limit = 20
 
 
 class ProjectViewSet(ModelViewSet):
     """
     класс - представлений
     """
-    permission_classes = [DjangoModelPermissions]
+    # permission_classes = [DjangoModelPermissions]
     serializer_class = ProjectSerializer
-    pagination_class = ProjectLimitOffsetPagination
-    fields_filter = ['title']
+    # pagination_class = ProjectLimitOffsetPagination
+    # fields_filter = ['title']
+    filterset_class = ProjectFilter
 
     def get_queryset(self):
         """
@@ -44,10 +46,10 @@ class TodoViewSet(ModelViewSet):
     """
     класс - представлений
     """
-    permission_classes = [DjangoModelPermissions]
+    # permission_classes = [DjangoModelPermissions]
     serializer_class = TodoSerializer
-    pagination_class = TodoLimitOffsetPagination
-    fields_filter = ['project']
+    # pagination_class = TodoLimitOffsetPagination
+    # fields_filter = ['project']
 
     def get_queryset(self):
         """
