@@ -27,18 +27,18 @@ services:
     environment:
       DJANGO_SETTINGS_MODULE: 'todonotes.settings.prod'
 
-    nginx:
-      build: ./nginx
-      privileged: true
-      ports:
-        - 8000:80
-      depends_on:
-        - todonotes
+  nginx:
+    build: ./nginx
+    privileged: true
+    ports:
+      - 8000:80
+    depends_on:
+      - todonotes
 
-    frontend:
-      build: ./frontend
-      privileged: true
-      ports:
-        - 80:80
-      depends_on:
-        - todonotes
+  frontend:
+    build: ./frontend
+    privileged: true
+    ports:
+      - 80:80
+    depends_on:
+      - todonotes
